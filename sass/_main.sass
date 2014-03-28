@@ -11,7 +11,7 @@
 		box-shadow: 0 0 30px rgba(#000, .7)
 		border-radius: 4px 
 		background: #FFF 
-		z-index: 300
+		z-index: 100
 		cursor: pointer
 		+s(header)
 		i
@@ -46,11 +46,14 @@
 	color: #FFFFFF
 	text-decoration: none 
 	background: #80B927 
- 
+	z-index: 100 
+	&:hover
+		background: #6FAA00 
 .nav
 	position: fixed
 	top: 20px 
 	left: 20px 
+	z-index: 200 
 	.nav__icon
 		position: absolute
 		width: 60px 
@@ -66,10 +69,15 @@
 		.nav__list
 			left: 60px
 			opacity: 1
+			width: 500px 
+			+transition(all 300ms ceaser($easeOutBack))
 	.nav__list
 		position: absolute
 		left: 60px -100px
-		opacity: 0 
+		left: 60px 
+		width: 0
+		overflow: hidden 
+		opacity: 1
 		top: 0
 		list-style: none
 		
@@ -142,7 +150,6 @@
 	padding: 63px 0 91px 0
 	background: #FFFFFF  
 	text-align: center
-	margin-bottom: 55px 
 	.featured__title
 		font-weight: normal
 		font-size: 20px 
@@ -152,8 +159,9 @@
 		a
 			display: inline-block
 			margin: 0 20px 
-			opacity: .5
+			opacity: .2
 			vertical-align: top
+			+transition(opacity linear .2s)
 			&:hover
 				opacity: 1
 	@each $s in l1,l2,l3,l4
@@ -162,3 +170,74 @@
 	.featured__l1,.featured__l3
 		position: relative
 		top: -6px 
+
+.scrolltotop
+	position: fixed
+	z-index: 300
+	bottom: 20px  
+	right: 20px - 100px
+	height: 60px 
+	width: 60px 
+	background: #fff 
+	cursor: pointer
+	+transition(all 200ms ceaser($easeInOutBack))
+	i
+		position: absolute
+		top: 50%
+		left: 50%
+		margin: -5px 0 0 -10px
+		+s(totop)
+	.is-bottom &
+		right: 20px 
+		
+
+.footer
+	height: 100vh
+	position: relative
+	background: url(../img/footer.jpg) no-repeat 50% 0 
+	background-attachment: fixed 
+	.footer__buy
+		position: absolute
+		left: 50%
+		width: 580px  
+		margin-left: -290px 
+		bottom: 40%
+		font-size: 50px  
+		color: #81B928
+		text-decoration: none
+		display: inline-block
+		border: 7px solid #80B927
+		height: 117px   
+		line-height: 117px
+		text-align: center 
+		+transition(all .2s linear)
+		&:hover
+			background: #80B927
+			color: #fff 
+	.footer__copy
+		position: absolute
+		left: 44px 
+		bottom: 26px 
+		font-size: 14px 
+		color: #C1C1C1 
+.socials
+	position: absolute
+	bottom: 15%
+	left: 0
+	right: 0
+	text-align: center
+	list-style: none
+	font-size: 0 
+	li
+		display: inline-block
+	a
+		display: inline-block
+		margin: 0 5px 
+		opacity: .1
+		+hide-text
+		+transition(all .2s linear)
+		&:hover
+			opacity: .2 
+	@each $s in facebook,twitter,instagram, pinterest
+		.socials__#{$s}
+			+s(social-#{$s})
