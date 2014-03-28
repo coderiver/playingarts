@@ -1,2 +1,164 @@
-// Normally mainpage styles
+.header
+	height: 100vh
+	width: auto
+	position: relative
+	.header__gotocards
+		position: absolute
+		left: 50%
+		top: 50%
+		margin-left: -145px 
+		margin-top: -197px 
+		box-shadow: 0 0 30px rgba(#000, .7)
+		border-radius: 4px 
+		background: #FFF 
+		z-index: 300
+		cursor: pointer
+		+s(header)
+		i
+			position: absolute
+			left: 119px 
+			top: 305px 
+			+s(header_hover)
+			opacity: 0
+			z-index: 31 
+			+transition(all .2s linear)
+		&:hover
+			i
+				opacity: 1 
+	.header__bg
+		height: 100vh
+		position: relative
+		overflow: hidden 
+		z-index: 20 
+		.header__slide
+			height: 100vh
+			width: 100% 
+			background-size: cover 
+.buynow
+	position: fixed
+	top: 20px 
+	right: 20px 
+	width: 120px 
+	height: 60px 
+	line-height: 60px 
+	text-align: center
+	font-size: 16px 
+	color: #FFFFFF
+	text-decoration: none 
+	background: #80B927 
  
+.nav
+	position: fixed
+	top: 20px 
+	left: 20px 
+	.nav__icon
+		position: absolute
+		width: 60px 
+		height: 60px
+		background: #EDEDED 
+		i
+			position: absolute
+			top: 20px 
+			left: 20px 
+			+s(nav)
+			z-index: 20 
+	&:hover
+		.nav__list
+			left: 60px
+			opacity: 1
+	.nav__list
+		position: absolute
+		left: 60px -100px
+		opacity: 0 
+		top: 0
+		list-style: none
+		
+		color: #717171
+		background: #F5F5F5 
+		font-size: 0 
+		white-space: nowrap
+		+transition(all .2s ease-in-out)
+	 
+		li
+			display: inline-block
+		a
+			color: #717171
+			display: inline-block
+			float: left
+			text-decoration: none 
+			padding: 0 20px
+			font-size: 16px  
+			height: 60px 
+			line-height: 60px 
+			&:hover,&.is-active
+				background: #EDEDED 
+
+.cards
+	max-width: 1200px 
+	margin: 0 auto 
+	text-align: center
+	padding-bottom: 70px 
+	.cards__text
+		padding: 90px 100px
+		font-size: 25px
+		text-align: center
+		color: #3E3E3E
+		line-height: 1.5  
+	.cards__more
+		margin-top: 90px 
+		display: inline-block
+		width: 200px 
+		height: 60px 
+		font-size: 20px 
+		color: #3E3E3E
+		text-decoration: none
+		cursor: pointer
+		background: #fff
+		line-height: 60px   
+.card
+	max-width: 260px
+	margin: 20px 10px
+	position: relative
+	text-align: center
+	display: inline-block
+	font-size: 13px
+	color: #ccc
+	text-align: center
+	+transition(all .2s linear)
+	text-decoration: none
+	.card__img
+		margin-bottom: 15px 
+		+transition(all .2s linear)
+		border-radius: 10px 
+		img
+			display: block
+			width: 100% 
+	&:hover
+		color: #999 
+		.card__img
+			box-shadow: 0px 0px 25px #e9e9e9
+
+.featured
+	padding: 63px 0 91px 0
+	background: #FFFFFF  
+	text-align: center
+	margin-bottom: 55px 
+	.featured__title
+		font-weight: normal
+		font-size: 20px 
+		color: #9C9C9C 
+		margin-bottom: 60px 
+	.featured__logos
+		a
+			display: inline-block
+			margin: 0 20px 
+			opacity: .5
+			vertical-align: top
+			&:hover
+				opacity: 1
+	@each $s in l1,l2,l3,l4
+		.featured__#{$s}
+			+s(#{$s})
+	.featured__l1,.featured__l3
+		position: relative
+		top: -6px 

@@ -8,15 +8,120 @@
 	<link rel="stylesheet" media="screen" href="css/screen.css" >
 	<!--[if IE]><script src="js/html5shiv.js"></script><![endif]-->
 	<script src="js/jquery.js"></script>
+	<script src="js/cycle.js"></script>
 	<script src="js/common.js"></script>
 </head>
 <body>
 
-<!-- BEGIN  out-->
-<div class="out">
-
+<!-- begin header  -->
+<div class="header">
+	<div class="header__gotocards">
+		<i></i>
+	</div>
+	<div class="header__bg cycle-slideshow"  
+    data-cycle-fx="fade"
+	data-cycle-slides=".header__slide"
+    data-cycle-speed="3000">
+		<div class="header__slide" style="background-image: url(img/1.jpg);"></div>
+		<div class="header__slide" style="background-image: url(img/2.jpg);"></div>
+		<div class="header__slide" style="background-image: url(img/3.jpg);"></div>
+	</div>
 </div>
-<!-- END out-->
+<!-- end header -->
+<a href="#" class="buynow">Buy Now</a>
+<nav class="nav">
+	<div class="nav__icon"><i></i></div>
+	<ul class="nav__list">
+		<li><a href="#">Interviews</a></li>
+		<li><a href="#">Press &amp; Partners</a></li>
+		<li><a href="#">Thanks</a></li>
+		<li><a href="#">Contact</a></li>
+	</ul>
+</nav>
 
+<!-- begin cards  -->
+<div class="cards">
+	<div class="cards__text">From the two of clubs to the ace of diamonds, each of 54 participants<br> from all over the world has illustrated a single card in their own individual <br>style and technique.</div>
+	
+	<a href='#' class="card">
+		<div class="card__img"><img src="img/card.png" alt=""></div>
+		<div class="card__author">Tang Yau Hoong</div>
+	</a>
+	<a href='#' class="card">
+		<div class="card__img"><img src="img/card.png" alt=""></div>
+		<div class="card__author">Tang Yau Hoong</div>
+	</a>
+	<a href='#' class="card">
+		<div class="card__img"><img src="img/card.png" alt=""></div>
+		<div class="card__author">Tang Yau Hoong</div>
+	</a>
+	<a href='#' class="card">
+		<div class="card__img"><img src="img/card.png" alt=""></div>
+		<div class="card__author">Tang Yau Hoong</div>
+	</a>
+	<a href='#' class="card">
+		<div class="card__img"><img src="img/card.png" alt=""></div>
+		<div class="card__author">Tang Yau Hoong</div>
+	</a>
+	<a href='#' class="card">
+		<div class="card__img"><img src="img/card.png" alt=""></div>
+		<div class="card__author">Tang Yau Hoong</div>
+	</a>
+	<a href='#' class="card">
+		<div class="card__img"><img src="img/card.png" alt=""></div>
+		<div class="card__author">Tang Yau Hoong</div>
+	</a>
+	<a href='#' class="card">
+		<div class="card__img"><img src="img/card.png" alt=""></div>
+		<div class="card__author">Tang Yau Hoong</div>
+	</a>
+	<a href='#' class="card">
+		<div class="card__img"><img src="img/card.png" alt=""></div>
+		<div class="card__author">Tang Yau Hoong</div>
+	</a>
+	<a href='#' class="card">
+		<div class="card__img"><img src="img/card.png" alt=""></div>
+		<div class="card__author">Tang Yau Hoong</div>
+	</a>
+	<a href='#' class="card">
+		<div class="card__img"><img src="img/card.png" alt=""></div>
+		<div class="card__author">Tang Yau Hoong</div>
+	</a>
+	<a href='#' class="card">
+		<div class="card__img"><img src="img/card.png" alt=""></div>
+		<div class="card__author">Tang Yau Hoong</div>
+	</a>
+	<div class="cards__more">See all cards</div>
+</div>
+<!-- end cards -->
+<!-- begin featured  -->
+<div class="featured">
+	<h2 class="featured__title">Featured in</h2>
+	<div class="featured__logos">
+		<a href="#" class="featured__l1"></a>
+		<a href="#" class="featured__l2"></a>
+		<a href="#" class="featured__l3"></a>
+		<a href="#" class="featured__l4"></a>
+	</div>
+</div>
+<!-- end featured -->
+
+<!-- begin footer  -->
+<div class="footer">
+	<div class="footer__bg"></div>
+	<a href='#' class="footer__buy">
+		Buy Now for $21.00
+	</a>
+	<ul class="socials">
+		<li><a href="#" class="socials__tw">Twitter</a></li>
+		<li><a href="#" class="socials__fb">Facebook</a></li>
+		<li><a href="#" class="socials__pi">Pinterest</a></li>
+		<li><a href="#" class="socials__in">Instagram</a></li>
+	</ul>
+	<div class="footer__copy">© 2014 Digital Abstracts</div>
+</div>
+<!-- end footer -->
+
+<div class="scrolltotop"></div>
 </body>
 </html>

@@ -1,14 +1,14 @@
 /*!
-* jQuery Cycle2; build: v20131005
+* jQuery Cycle2; version: 2.1.3 build: 20140314
 * http://jquery.malsup.com/cycle2/
-* Copyright (c) 2013 M. Alsup; Dual licensed: MIT/GPL
+* Copyright (c) 2014 M. Alsup; Dual licensed: MIT/GPL
 */
 
-/*! core engine; version: 20131003 */
+/* Cycle2 core engine */
 ;(function($) {
 "use strict";
 
-var version = '20131003';
+var version = '2.1.2';
 
 $.fn.cycle = function( options ) {
     // fix mistakes with the ready state
@@ -122,7 +122,11 @@ $.fn.cycle.API = {
         if ( opts.container.css('position') == 'static' )
             opts.container.css('position', 'relative');
 
-        $(opts.slides[opts.currSlide]).css('opacity',1).show();
+        $(opts.slides[opts.currSlide]).css({
+            opacity: 1,
+            display: 'block',
+            visibility: 'visible'
+        });
         opts.API.stackSlides( opts.slides[opts.currSlide], opts.slides[opts.nextSlide], !opts.reverse );
 
         if ( opts.pauseOnHover ) {
@@ -401,6 +405,16 @@ $.fn.cycle.API = {
             opts.nextSlide = opts.currSlide;
             return;
         }
+        if ( opts.continueAuto !== undefined ) {
+            if ( opts.continueAuto === false || 
+                ($.isFunction(opts.continueAuto) && opts.continueAuto() === false )) {
+                opts.API.log('terminating automatic transitions');
+                opts.timeout = 0;
+                if ( opts.timeoutId )
+                    clearTimeout(opts.timeoutId);
+                return;
+            }
+        }
         if ( timeout ) {
             opts._lastQueue = $.now();
             if ( specificTimeout === undefined )
@@ -496,7 +510,7 @@ $.fn.cycle.API = {
         slide.addClass( opts.slideClass );
     },
 
-    updateView: function( isAfter, isDuring ) {
+    updateView: function( isAfter, isDuring, forceEvent ) {
         var opts = this.opts();
         if ( !opts._initialized )
             return;
@@ -515,9 +529,16 @@ $.fn.cycle.API = {
         }
 
         if ( isAfter && opts.hideNonActive )
-            opts.slides.filter( ':not(.' + opts.slideActiveClass + ')' ).hide();
+            opts.slides.filter( ':not(.' + opts.slideActiveClass + ')' ).css('visibility', 'hidden');
 
-        opts.API.trigger('cycle-update-view', [ opts, slideOpts, currSlide, isAfter ]);
+        if ( opts.updateView === 0 ) {
+            setTimeout(function() {
+                opts.API.trigger('cycle-update-view', [ opts, slideOpts, currSlide, isAfter ]);
+            }, slideOpts.speed / (opts.sync ? 2 : 1) );
+        }
+
+        if ( opts.updateView !== 0 )
+            opts.API.trigger('cycle-update-view', [ opts, slideOpts, currSlide, isAfter ]);
         
         if ( isAfter )
             opts.API.trigger('cycle-update-view-after', [ opts, slideOpts, currSlide ]);
@@ -595,14 +616,14 @@ $.fn.cycle.transitions = {
     none: {
         before: function( opts, curr, next, fwd ) {
             opts.API.stackSlides( next, curr, fwd );
-            opts.cssBefore = { opacity: 1, display: 'block' };
+            opts.cssBefore = { opacity: 1, visibility: 'visible', display: 'block' };
         }
     },
     fade: {
         before: function( opts, curr, next, fwd ) {
             var css = opts.API.getSlideOpts( opts.nextSlide ).slideCss || {};
             opts.API.stackSlides( curr, next, fwd );
-            opts.cssBefore = $.extend(css, { opacity: 0, display: 'block' });
+            opts.cssBefore = $.extend(css, { opacity: 0, visibility: 'visible', display: 'block' });
             opts.animIn = { opacity: 1 };
             opts.animOut = { opacity: 0 };
         }
@@ -611,7 +632,7 @@ $.fn.cycle.transitions = {
         before: function( opts , curr, next, fwd ) {
             var css = opts.API.getSlideOpts( opts.nextSlide ).slideCss || {};
             opts.API.stackSlides( curr, next, fwd );
-            opts.cssBefore = $.extend(css, { opacity: 1, display: 'block' });
+            opts.cssBefore = $.extend(css, { opacity: 1, visibility: 'visible', display: 'block' });
             opts.animOut = { opacity: 0 };
         }
     },
@@ -619,7 +640,7 @@ $.fn.cycle.transitions = {
         before: function( opts, curr, next, fwd ) {
             opts.API.stackSlides( curr, next, fwd );
             var w = opts.container.css('overflow','hidden').width();
-            opts.cssBefore = { left: fwd ? w : - w, top: 0, opacity: 1, display: 'block' };
+            opts.cssBefore = { left: fwd ? w : - w, top: 0, opacity: 1, visibility: 'visible', display: 'block' };
             opts.cssAfter = { zIndex: opts._maxZ - 2, left: 0 };
             opts.animIn = { left: 0 };
             opts.animOut = { left: fwd ? -w : w };
@@ -650,7 +671,7 @@ $.fn.cycle.defaults = {
     startingSlide:    0,
     sync:             true,
     timeout:          4000,
-    updateView:       -1
+    updateView:       0
 };
 
 // automatically find and run slideshows
@@ -660,12 +681,14 @@ $(document).ready(function() {
 
 })(jQuery);
 
-/*! Cycle2 autoheight plugin; Copyright (c) M.Alsup, 2012; version: 20130304 */
+/*! Cycle2 autoheight plugin; Copyright (c) M.Alsup, 2012; version: 20130913 */
 (function($) {
 "use strict";
 
 $.extend($.fn.cycle.defaults, {
-    autoHeight: 0 // setting this option to false disables autoHeight logic
+    autoHeight: 0, // setting this option to false disables autoHeight logic
+    autoHeightSpeed: 250,
+    autoHeightEasing: null
 });    
 
 $(document).on( 'cycle-initialized', function( e, opts ) {
@@ -770,8 +793,7 @@ function calcSentinelIndex( e, opts ) {
 
 function onBefore( e, opts, outgoing, incoming, forward ) {
     var h = $(incoming).outerHeight();
-    var duration = opts.sync ? opts.speed / 2 : opts.speed;
-    opts.container.animate( { height: h }, duration );
+    opts.container.animate( { height: h }, opts.autoHeightSpeed, opts.autoHeightEasing );
 }
 
 function onDestroy( e, opts ) {
@@ -1071,7 +1093,7 @@ function onHashChange( opts, setStartingSlide ) {
 
 })(jQuery);
 
-/*! loader plugin for Cycle2;  version: 20130307 */
+/*! loader plugin for Cycle2;  version: 20131121 */
 (function($) {
 "use strict";
 
@@ -1104,7 +1126,7 @@ $(document).on( 'cycle-bootstrap', function( e, opts ) {
         if ( ! slideCount )
             return;
 
-        slides.hide().appendTo('body').each(function(i) { // appendTo fixes #56
+        slides.css('visibility','hidden').appendTo('body').each(function(i) { // appendTo fixes #56
             var count = 0;
             var slide = $(this);
             var images = slide.is('img') ? slide : slide.find('img');
@@ -1126,7 +1148,7 @@ $(document).on( 'cycle-bootstrap', function( e, opts ) {
                 else {
                     $(this).load(function() {
                         imageLoaded();
-                    }).error(function() {
+                    }).on("error", function() {
                         if ( --count === 0 ) {
                             // ignore this slide
                             opts.API.log('slide skipped; img not loaded:', this.src);
@@ -1177,7 +1199,7 @@ $(document).on( 'cycle-bootstrap', function( e, opts ) {
 
 })(jQuery);
 
-/*! pager plugin for Cycle2;  version: 20130525 */
+/*! pager plugin for Cycle2;  version: 20140324 */
 (function($) {
 "use strict";
 
@@ -1185,6 +1207,7 @@ $.extend($.fn.cycle.defaults, {
     pager:            '> .cycle-pager',
     pagerActiveClass: 'cycle-pager-active',
     pagerEvent:       'click.cycle',
+    pagerEventBubble: undefined,
     pagerTemplate:    '<span>&bull;</span>'
 });    
 
@@ -1245,7 +1268,8 @@ function buildPagerLink( opts, slideOpts, slide ) {
             pagerLink = pager.children().eq( opts.slideCount - 1 );
         }
         pagerLink.on( opts.pagerEvent, function(e) {
-            e.preventDefault();
+            if ( ! opts.pagerEventBubble )
+                e.preventDefault();
             opts.API.page( pager, e.currentTarget);
         });
     });
