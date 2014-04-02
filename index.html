@@ -8,120 +8,305 @@
 	<link rel="stylesheet" media="screen" href="css/screen.css" >
 	<!--[if IE]><script src="js/html5shiv.js"></script><![endif]-->
 	<script src="js/jquery.js"></script>
-	<script src="js/cycle.js"></script>
+	<script src="js/jquery.cycle2.min.js"></script>
+	<script src="js/jquery.lazyload.min.js"></script>
 	<script src="js/common.js"></script>
 </head>
 <body>
-
-<!-- begin header  -->
-<div class="header">
-	<div class="header__gotocards">
-		<i></i>
-	</div>
-	<div class="header__bg cycle-slideshow"  
-    data-cycle-fx="fade"
-	data-cycle-slides=".header__slide"
-    data-cycle-speed="3000">
-		<div class="header__slide" style="background-image: url(img/1.jpg);"></div>
-		<div class="header__slide" style="background-image: url(img/2.jpg);"></div>
-		<div class="header__slide" style="background-image: url(img/3.jpg);"></div>
-	</div>
-</div>
-<!-- end header -->
-<a href="#" class="buynow">Buy Now</a>
+<!-- buy-now -->
+<a href="#" class="buy-now">Buy Now</a>
+<!-- nav -->
 <nav class="nav">
 	<div class="nav__icon"><i></i></div>
 	<ul class="nav__list">
-		<li><a href="#">Interviews</a></li>
-		<li><a href="#">Press &amp; Partners</a></li>
-		<li><a href="#">Thanks</a></li>
-		<li><a href="#">Contact</a></li>
+		<li><a href="tabs/interviews.html">Interviews</a></li>
+		<li><a href="tabs/partners.html">Press &amp; Partners</a></li>
+		<li><a href="tabs/thanks.html">Thanks</a></li>
+		<li><a href="tabs/contacts.html">Contact</a></li>
 	</ul>
 </nav>
-
-<!-- begin cards  -->
-<div class="cards">
-	<div class="cards__text">From the two of clubs to the ace of diamonds, each of 54 participants<br> from all over the world has illustrated a single card in their own individual <br>style and technique.</div>
-	
-	<a href='#' class="card">
-		<div class="card__img"><img src="img/card.png" alt=""></div>
-		<div class="card__author">Tang Yau Hoong</div>
-	</a>
-	<a href='#' class="card">
-		<div class="card__img"><img src="img/card.png" alt=""></div>
-		<div class="card__author">Tang Yau Hoong</div>
-	</a>
-	<a href='#' class="card">
-		<div class="card__img"><img src="img/card.png" alt=""></div>
-		<div class="card__author">Tang Yau Hoong</div>
-	</a>
-	<a href='#' class="card">
-		<div class="card__img"><img src="img/card.png" alt=""></div>
-		<div class="card__author">Tang Yau Hoong</div>
-	</a>
-	<a href='#' class="card">
-		<div class="card__img"><img src="img/card.png" alt=""></div>
-		<div class="card__author">Tang Yau Hoong</div>
-	</a>
-	<a href='#' class="card">
-		<div class="card__img"><img src="img/card.png" alt=""></div>
-		<div class="card__author">Tang Yau Hoong</div>
-	</a>
-	<a href='#' class="card">
-		<div class="card__img"><img src="img/card.png" alt=""></div>
-		<div class="card__author">Tang Yau Hoong</div>
-	</a>
-	<a href='#' class="card">
-		<div class="card__img"><img src="img/card.png" alt=""></div>
-		<div class="card__author">Tang Yau Hoong</div>
-	</a>
-	<a href='#' class="card">
-		<div class="card__img"><img src="img/card.png" alt=""></div>
-		<div class="card__author">Tang Yau Hoong</div>
-	</a>
-	<a href='#' class="card">
-		<div class="card__img"><img src="img/card.png" alt=""></div>
-		<div class="card__author">Tang Yau Hoong</div>
-	</a>
-	<a href='#' class="card">
-		<div class="card__img"><img src="img/card.png" alt=""></div>
-		<div class="card__author">Tang Yau Hoong</div>
-	</a>
-	<a href='#' class="card">
-		<div class="card__img"><img src="img/card.png" alt=""></div>
-		<div class="card__author">Tang Yau Hoong</div>
-	</a>
-	<div class="cards__more">See all cards</div>
-</div>
-<!-- end cards -->
-<!-- begin featured  -->
-<div class="featured">
-	<h2 class="featured__title">Featured in</h2>
-	<div class="featured__logos">
-		<a href="#" class="featured__l1"></a>
-		<a href="#" class="featured__l2"></a>
-		<a href="#" class="featured__l3"></a>
-		<a href="#" class="featured__l4"></a>
+<!-- wrapper  -->
+<div class="wrapper">
+	<!-- header  -->
+	<div class="header">
+		<div class="header__go-cards">
+			<i></i>
+		</div>
+		<div class="header__bg cycle-slideshow"  
+	    data-cycle-fx="fade"
+	    data-cycle-timeout="3000"
+	    data-cycle-slides="> div">
+			<div class="header__slide">
+				<div class="header__pic" data-type="background" data-speed="5" style="background-image: url(img/1.jpg);"></div>
+			</div>
+			<div class="header__slide">
+				<div class="header__pic" data-type="background" data-speed="5" style="background-image: url(img/2.jpg);"></div>
+			</div>
+			<div class="header__slide">
+				<div class="header__pic" data-type="background" data-speed="5" style="background-image: url(img/3.jpg);"></div>
+			</div>
+		</div>
+	</div>
+	<!-- cards  -->
+	<div class="cards">
+		<div class="cards__text">From the two of clubs to the ace of diamonds, each of 54 participants<br> from all over the world has illustrated a single card in their own individual <br>style and technique.</div>
+		<div class="cards__list">
+			<!-- 1 -->
+			<a href="img/cards/card-big.png" class="card">
+				<div class="card__img">
+					<img src="img/blank.gif" class="lazy-load" data-original="img/cards/card.png" width="280" height="390">
+				</div>
+				<div class="card__author">Tang Yau Hoong</div>
+				<div class="author" hidden>
+					<div class="author__name">Tobias van Schneider</div>
+					<div class="author__photo">http://placehold.it/200x200</div>
+					<div class="author__about">
+						<p>Tobias van Schneider is a german designer, raised in Austria and currently living/working in New York City.</p>
+						<p>Focused on Branding, Art Direction & Product Design he had the privilege of working with companies such as Red Bull, BMW, Google, Wacom, Sony, Fantasy Interactive, Stinkdigital, Toyota, Ralph Lauren, Bwin & more.</p>
+						<p>Currently a product design lead building new products with the great Spotify team in New York.</p>
+					</div>
+					<div class="author__interview">interview/interview_tobias_van_schneider</div>
+					<div class="author__site-link">http://google.com</div>
+					<div class="author__site-title">www.vanschneider.com</div>
+					<div class="author__twitter">http://twitter.com</div>
+					<div class="author__facebook">http://facebook.com</div>
+					<div class="author__pinterest">http://pinterest.com</div>
+					<div class="author__instagram">http://instagram.com</div>
+				</div>
+			</a>
+			<!-- 2 -->
+			<a href="img/cards/card-big.png" class="card">
+				<div class="card__img">
+					<img src="img/blank.gif" class="lazy-load" data-original="img/cards/card.png" width="280" height="390">
+				</div>
+				<div class="card__author">2</div>
+				<div class="author" hidden>
+					<div class="author__name">2</div>
+					<div class="author__photo">http://placehold.it/200x200</div>
+					<div class="author__about">
+						<p>Tobias van Schneider is a german designer, raised in Austria and currently living/working in New York City.</p>
+						<p>Focused on Branding, Art Direction & Product Design he had the privilege of working with companies such as Red Bull, BMW, Google, Wacom, Sony, Fantasy Interactive, Stinkdigital, Toyota, Ralph Lauren, Bwin & more.</p>
+						<p>Currently a product design lead building new products with the great Spotify team in New York.</p>
+					</div>
+					<div class="author__interview">interview/interview_tobias_van_schneider</div>
+					<div class="author__site-link">http://google.com</div>
+					<div class="author__site-title">www.vanschneider.com</div>
+					<div class="author__twitter">http://twitter.com</div>
+					<div class="author__facebook">http://facebook.com</div>
+					<div class="author__pinterest">http://pinterest.com</div>
+					<div class="author__instagram">http://instagram.com</div>
+				</div>
+			</a>
+			<!-- 3 -->
+			<a href="img/cards/card-big.png" class="card">
+				<div class="card__img">
+					<img src="img/blank.gif" class="lazy-load" data-original="img/cards/card.png" width="280" height="390">
+				</div>
+				<div class="card__author">3</div>
+				<div class="author" hidden>
+					<div class="author__name">3</div>
+					<div class="author__photo">http://placehold.it/200x200</div>
+					<div class="author__about">
+						<p>Tobias van Schneider is a german designer, raised in Austria and currently living/working in New York City.</p>
+						<p>Focused on Branding, Art Direction & Product Design he had the privilege of working with companies such as Red Bull, BMW, Google, Wacom, Sony, Fantasy Interactive, Stinkdigital, Toyota, Ralph Lauren, Bwin & more.</p>
+						<p>Currently a product design lead building new products with the great Spotify team in New York.</p>
+					</div>
+					<div class="author__interview">interview/interview_tobias_van_schneider</div>
+					<div class="author__site-link">http://google.com</div>
+					<div class="author__site-title">www.vanschneider.com</div>
+					<div class="author__twitter">http://twitter.com</div>
+					<div class="author__facebook">http://facebook.com</div>
+					<div class="author__pinterest">http://pinterest.com</div>
+					<div class="author__instagram">http://instagram.com</div>
+				</div>
+			</a>
+			<!-- 4 -->
+			<a href="img/cards/card-big.png" class="card">
+				<div class="card__img">
+					<img src="img/blank.gif" class="lazy-load" data-original="img/cards/card.png" width="280" height="390">
+				</div>
+				<div class="card__author">4</div>
+				<div class="author" hidden>
+					<div class="author__name">4</div>
+					<div class="author__photo">http://placehold.it/200x200</div>
+					<div class="author__about">
+						<p>Tobias van Schneider is a german designer, raised in Austria and currently living/working in New York City.</p>
+						<p>Focused on Branding, Art Direction & Product Design he had the privilege of working with companies such as Red Bull, BMW, Google, Wacom, Sony, Fantasy Interactive, Stinkdigital, Toyota, Ralph Lauren, Bwin & more.</p>
+						<p>Currently a product design lead building new products with the great Spotify team in New York.</p>
+					</div>
+					<div class="author__interview">interview/interview_tobias_van_schneider</div>
+					<div class="author__site-link">http://google.com</div>
+					<div class="author__site-title">www.vanschneider.com</div>
+					<div class="author__twitter">http://twitter.com</div>
+					<div class="author__facebook">http://facebook.com</div>
+					<div class="author__pinterest">http://pinterest.com</div>
+					<div class="author__instagram">http://instagram.com</div>
+				</div>
+			</a>
+			<!-- 5 -->
+			<a href="img/cards/card-big.png" class="card">
+				<div class="card__img">
+					<img src="img/blank.gif" class="lazy-load" data-original="img/cards/card.png" width="280" height="390">
+				</div>
+				<div class="card__author">5</div>
+				<div class="author" hidden>
+					<div class="author__name">5</div>
+					<div class="author__photo">http://placehold.it/200x200</div>
+					<div class="author__about">
+						<p>Tobias van Schneider is a german designer, raised in Austria and currently living/working in New York City.</p>
+						<p>Focused on Branding, Art Direction & Product Design he had the privilege of working with companies such as Red Bull, BMW, Google, Wacom, Sony, Fantasy Interactive, Stinkdigital, Toyota, Ralph Lauren, Bwin & more.</p>
+						<p>Currently a product design lead building new products with the great Spotify team in New York.</p>
+					</div>
+					<div class="author__interview">interview/interview_tobias_van_schneider</div>
+					<div class="author__site-link">http://google.com</div>
+					<div class="author__site-title">www.vanschneider.com</div>
+					<div class="author__twitter">http://twitter.com</div>
+					<div class="author__facebook">http://facebook.com</div>
+					<div class="author__pinterest">http://pinterest.com</div>
+					<div class="author__instagram">http://instagram.com</div>
+				</div>
+			</a>
+			<!-- 6 -->
+			<a href="img/cards/card-big.png" class="card">
+				<div class="card__img">
+					<img src="img/blank.gif" class="lazy-load" data-original="img/cards/card.png" width="280" height="390">
+				</div>
+				<div class="card__author">6</div>
+				<div class="author" hidden>
+					<div class="author__name">6</div>
+					<div class="author__photo">http://placehold.it/200x200</div>
+					<div class="author__about">
+						<p>Tobias van Schneider is a german designer, raised in Austria and currently living/working in New York City.</p>
+						<p>Focused on Branding, Art Direction & Product Design he had the privilege of working with companies such as Red Bull, BMW, Google, Wacom, Sony, Fantasy Interactive, Stinkdigital, Toyota, Ralph Lauren, Bwin & more.</p>
+						<p>Currently a product design lead building new products with the great Spotify team in New York.</p>
+					</div>
+					<div class="author__interview">interview/interview_tobias_van_schneider</div>
+					<div class="author__site-link">http://google.com</div>
+					<div class="author__site-title">www.vanschneider.com</div>
+					<div class="author__twitter">http://twitter.com</div>
+					<div class="author__facebook">http://facebook.com</div>
+					<div class="author__pinterest">http://pinterest.com</div>
+					<div class="author__instagram">http://instagram.com</div>
+				</div>
+			</a>
+			<!-- 7 -->
+			<a href="img/cards/card-big.png" class="card">
+				<div class="card__img">
+					<img src="img/blank.gif" class="lazy-load" data-original="img/cards/card.png" width="280" height="390">
+				</div>
+				<div class="card__author">7</div>
+				<div class="author" hidden>
+					<div class="author__name">7</div>
+					<div class="author__photo">http://placehold.it/200x200</div>
+					<div class="author__about">
+						<p>Tobias van Schneider is a german designer, raised in Austria and currently living/working in New York City.</p>
+						<p>Focused on Branding, Art Direction & Product Design he had the privilege of working with companies such as Red Bull, BMW, Google, Wacom, Sony, Fantasy Interactive, Stinkdigital, Toyota, Ralph Lauren, Bwin & more.</p>
+						<p>Currently a product design lead building new products with the great Spotify team in New York.</p>
+					</div>
+					<div class="author__interview">interview/interview_tobias_van_schneider</div>
+					<div class="author__site-link">http://google.com</div>
+					<div class="author__site-title">www.vanschneider.com</div>
+					<div class="author__twitter">http://twitter.com</div>
+					<div class="author__facebook">http://facebook.com</div>
+					<div class="author__pinterest">http://pinterest.com</div>
+					<div class="author__instagram">http://instagram.com</div>
+				</div>
+			</a>
+			<!-- 8 -->
+			<a href="img/cards/card-big.png" class="card">
+				<div class="card__img">
+					<img src="img/blank.gif" class="lazy-load" data-original="img/cards/card.png" width="280" height="390">
+				</div>
+				<div class="card__author">8</div>
+				<div class="author" hidden>
+					<div class="author__name">8</div>
+					<div class="author__photo">http://placehold.it/200x200</div>
+					<div class="author__about">
+						<p>Tobias van Schneider is a german designer, raised in Austria and currently living/working in New York City.</p>
+						<p>Focused on Branding, Art Direction & Product Design he had the privilege of working with companies such as Red Bull, BMW, Google, Wacom, Sony, Fantasy Interactive, Stinkdigital, Toyota, Ralph Lauren, Bwin & more.</p>
+						<p>Currently a product design lead building new products with the great Spotify team in New York.</p>
+					</div>
+					<div class="author__interview">interview/interview_tobias_van_schneider</div>
+					<div class="author__site-link">http://google.com</div>
+					<div class="author__site-title">www.vanschneider.com</div>
+					<div class="author__twitter">http://twitter.com</div>
+					<div class="author__facebook">http://facebook.com</div>
+					<div class="author__pinterest">http://pinterest.com</div>
+					<div class="author__instagram">http://instagram.com</div>
+				</div>
+			</a>
+		</div>
+		<div class="cards__more">See all cards</div>
+	</div>
+	<!-- featured  -->
+	<div class="featured">
+		<h2 class="featured__title">Featured in</h2>
+		<div class="featured__logos">
+			<a href="#" class="featured__l1"></a>
+			<a href="#" class="featured__l2"></a>
+			<a href="#" class="featured__l3"></a>
+			<a href="#" class="featured__l4"></a>
+		</div>
+	</div>
+	<!-- footer  -->
+	<div class="footer">
+		<div class="footer__bg"></div>
+		<a href='#' class="footer__buy">Buy Now for $21.00</a>
+		<ul class="socials">
+			<li><a href="#" class="socials__twitter">Twitter</a></li>
+			<li><a href="#" class="socials__facebook">Facebook</a></li>
+			<li><a href="#" class="socials__pinterest">Pinterest</a></li>
+			<li><a href="#" class="socials__instagram">Instagram</a></li>
+		</ul>
+		<div class="footer__copy">© 2014 Digital Abstracts</div>
 	</div>
 </div>
-<!-- end featured -->
-
-<!-- begin footer  -->
-<div class="footer">
-	<div class="footer__bg"></div>
-	<a href='#' class="footer__buy">
-		Buy Now for $21.00
-	</a>
-	<ul class="socials">
-		<li><a href="#" class="socials__twitter">Twitter</a></li>
-		<li><a href="#" class="socials__facebook">Facebook</a></li>
-		<li><a href="#" class="socials__pinterest">Pinterest</a></li>
-		<li><a href="#" class="socials__instagram">Instagram</a></li>
-	</ul>
-	<div class="footer__copy">© 2014 Digital Abstracts</div>
+<!-- go-top -->
+<div class="go-top"><i></i></div>
+<!-- page -->
+<div class="page"></div>
+<!-- slider -->
+<div class="slider">
+	<button class="slider__prev"></button>
+	<button class="slider__next"></button>
+	<div class="slider__in">
+		<!-- view -->
+		<div class="view">
+			<div class="title"></div>
+			<div class="view__card"></div>
+			<!-- share -->
+			<div class="share">
+				<div class="share__item">
+					<img src="http://placehold.it/60x22" alt="">
+				</div>
+				<div class="share__item">
+					<img src="http://placehold.it/60x22" alt="">
+				</div>
+				<div class="share__item">
+					<img src="http://placehold.it/60x22" alt="">
+				</div>
+				<div class="share__item">
+					<img src="http://placehold.it/60x22" alt="">
+				</div>
+			</div>
+		</div>
+		<!-- people -->
+		<div class="people">
+				<div class="people__name"></div>
+				<div class="people__photo"></div>
+				<div class="people__about"></div>
+				<ul class="people__links">
+					<li><a class="people__interview" href="#">Read interview</a></li>
+					<li><a class="people__site" href="#"></a></li>
+				</ul>
+				<ul class="socials socials_white">
+					<li><a href="#" class="socials__twitter">Twitter</a></li>
+					<li><a href="#" class="socials__facebook">Facebook</a></li>
+					<li><a href="#" class="socials__pinterest">Pinterest</a></li>
+					<li><a href="#" class="socials__instagram">Instagram</a></li>
+				</ul>
+		</div>
+	</div>
 </div>
-<!-- end footer -->
-
-<div class="scrolltotop"><i></i></div>
 </body>
 </html>

@@ -40,14 +40,548 @@
 // =book
 // 	font-family: "book",arial,sans-serif 
 
-+font(goth, gothapromed-webfont)  
-=got
-	font-family: "goth",arial,sans-serif 
++font(GothamProReg, gothaproreg)  
+=reg
+	font-family: "GothamProReg", Arial, sans-serif 
++font(GothamProMed, gothapromed)  
+=med
+	font-family: "GothamProMed", Arial, sans-serif 
++font(KlinicslabBold, klinicslabbold)  
+
 body
 	background: #F5F5F5 
 	font-size: 12px 
-	+got 
+	+med
 	line-height: 1.4
-
+	color: #3e3e3e 
+a
+	text-decoration: none
 
 // common blocks
+.wrapper
+	position: relative
+	z-index: 100 
+
+.header
+	height: 100vh
+	width: auto
+	position: relative
+	.header__go-cards
+		position: absolute
+		left: 50%
+		top: 50%
+		margin-left: -145px 
+		margin-top: -197px 
+		box-shadow: 0 0 30px rgba(#000, .7)
+		border-radius: 4px 
+		background: #FFF 
+		z-index: 120
+		cursor: pointer
+		+s(header)
+		i
+			position: absolute
+			left: 119px 
+			top: 305px 
+			+svg(arrow-hover, 50, 50)
+			opacity: 0
+			z-index: 31 
+			+transition(all .2s linear)
+		&:hover
+			i
+				opacity: .5
+	.header__bg
+		position: relative
+		height: 100vh
+		overflow: hidden 
+		z-index: 20 
+		.header__slide, .header__pic
+			width: 100% 
+			height: 100vh
+			background-size: cover 
+			background-attachment: fixed
+			
+.buy-now
+	position: fixed
+	top: 20px 
+	right: 20px 
+	width: 120px 
+	height: 60px 
+	line-height: 60px 
+	text-align: center
+	font-size: 16px 
+	color: #FFFFFF
+	text-decoration: none 
+	background: #80B927 
+	z-index: 300 
+	&:hover
+		background: #6FAA00 
+		
+.nav
+	position: fixed
+	top: 20px 
+	left: 20px 
+	z-index: 300 
+	&.is-visible
+		.nav__list
+			width: 500px
+	.nav__icon
+		position: absolute
+		width: 60px 
+		height: 60px
+		background: #EDEDED 
+		+tr(background .2s linear)
+		i
+			position: absolute
+			top: 20px 
+			left: 20px 
+			+svg(btn-menu, 20, 20)
+			opacity: .5 
+			z-index: 20 
+		&.is-back
+			cursor: pointer
+			i
+				+svg(arrow-left, 20, 20)
+		&.is-close, &.is-close-dark
+			cursor: pointer
+			i
+				+svg(btn-close, 20, 20)
+		&.is-close-dark
+			background: #333 
+			i
+				opacity: 1
+	&:hover
+		.nav__list
+			left: 60px
+			opacity: 1
+			width: 500px 
+			+transition(all 300ms ceaser($easeOutBack))
+	.nav__list
+		position: absolute
+		left: 60px 
+		width: 0
+		overflow: hidden 
+		opacity: 1
+		top: 0
+		list-style: none
+		background: #F5F5F5 
+		color: #717171
+		font-size: 0 
+		white-space: nowrap
+		+transition(all .2s ease-in-out) 
+		li
+			display: inline-block
+		a
+			color: #717171
+			display: inline-block
+			float: left
+			text-decoration: none 
+			padding: 0 20px
+			font-size: 16px  
+			height: 60px 
+			line-height: 60px 
+			&:hover,&.is-active
+				background: #EDEDED 
+
+.cards
+	max-width: 1220px 
+	margin: 0 auto 
+	text-align: center
+	padding-bottom: 70px 
+	.cards__text
+		padding: 90px 100px
+		font-size: 25px
+		text-align: center
+		color: #3E3E3E
+		line-height: 1.5  
+	.cards__more
+		margin-top: 90px 
+		display: inline-block
+		width: 200px 
+		height: 60px 
+		font-size: 20px 
+		color: #3E3E3E
+		text-decoration: none
+		cursor: pointer
+		background: #fff
+		line-height: 60px   
+.card
+	max-width: 280px
+	margin: 20px 10px
+	position: relative
+	text-align: center
+	display: inline-block
+	font-size: 13px
+	color: #ccc
+	text-align: center
+	+transition(all .2s linear)
+	text-decoration: none
+	.card__img
+		margin-bottom: 15px 
+		+transition(all .2s linear)
+		border-radius: 10px 
+		img
+			display: block
+			width: 100% 
+	&:hover
+		color: #999 
+		.card__img
+			box-shadow: 0px 0px 25px #e9e9e9
+
+.featured
+	padding: 63px 0 91px 0
+	background: #FFFFFF  
+	text-align: center
+	.featured__title
+		font-weight: normal
+		font-size: 20px 
+		color: #9C9C9C 
+		margin-bottom: 60px 
+	.featured__logos
+		a
+			display: inline-block
+			margin: 0 20px 
+			opacity: .2
+			vertical-align: top
+			+transition(opacity linear .2s)
+			&:hover
+				opacity: 1
+	@each $s in l1,l2,l3,l4
+		.featured__#{$s}
+			+s(#{$s})
+	.featured__l1,.featured__l3
+		position: relative
+		top: -6px 
+
+.go-top
+	position: fixed
+	z-index: 300
+	bottom: 20px  
+	right: 20px - 100px
+	height: 60px 
+	width: 60px 
+	background: #fff 
+	cursor: pointer
+	+transition(all 200ms ceaser($easeInOutBack))
+	i
+		position: absolute
+		top: 50%
+		left: 50%
+		margin: -5px 0 0 -10px
+		+svg(arrow-up, 20, 10)
+	.is-bottom &
+		right: 20px 
+		
+
+.footer
+	height: 100vh
+	position: relative
+	background: url(../img/footer.jpg) no-repeat 50% 0 
+	background-attachment: fixed 
+	.footer__buy
+		position: absolute
+		left: 50%
+		width: 580px  
+		margin-left: -290px 
+		bottom: 40%
+		font-size: 50px  
+		color: #81B928
+		text-decoration: none
+		display: inline-block
+		border: 7px solid #80B927
+		height: 117px   
+		line-height: 117px
+		text-align: center 
+		+transition(all .2s linear)
+		&:hover
+			background: #80B927
+			color: #fff 
+	.footer__copy
+		position: absolute
+		left: 44px 
+		bottom: 26px 
+		font-size: 14px 
+		color: #C1C1C1 
+.socials
+	position: absolute
+	bottom: 15%
+	left: 0
+	right: 0
+	text-align: center
+	list-style: none
+	font-size: 0 
+	li
+		display: inline-block
+	a
+		display: inline-block
+		margin: 0 5px 
+		opacity: .1
+		+hide-text
+		+transition(all .2s linear)
+		&:hover
+			opacity: .2
+	@each $s in facebook, twitter, instagram, pinterest
+		.socials__#{$s}
+			+svg(#{$s}, 50, 50)
+.socials_white
+	a
+		opacity: .2
+		&:hover
+			opacity: .4
+	.socials__twitter
+		+svg(twitter-white, 50, 50)
+	.socials__facebook
+		+svg(facebook-white, 50, 50)
+	.socials__pinterest
+		+svg(pinterest-white, 50, 50)
+	.socials__instagram
+		+svg(instagram-white, 50, 50)
+
+
+.page
+	display: none
+	position: fixed
+	top: 0
+	left: 0
+	right: 0
+	bottom: 0
+	padding: 180px 90px
+	background: #f5f5f5 
+	z-index: 200
+	overflow: auto
+	
+.title	
+	margin-bottom: 40px
+	font-size: 25px
+	color: #9C9C9C 
+	text-align: center 
+
+.contact
+	.title
+		margin-bottom: 130px
+.contact__mail
+	text-align: center
+	font-size: 80px
+	a
+		border-bottom: #7A7A7A 2px solid 
+		color: #3e3e3e 
+
+.thanks
+	text-align: center
+.thanks__important
+	margin-bottom: 40px
+	font-size: 20px 
+.thanks__another
+	margin-bottom: 85px
+	+reg
+	font-size: 16px
+
+.kick-starter
+	text-align: center
+	font-size: 0
+	a
+		display: inline-block
+		vertical-align: top
+		+s(kick-starter)
+
+
+.partners__important
+	margin-bottom: 70px
+	text-align: center
+	font-size: 0
+.partners__stickerapp
+	display: inline-block
+	vertical-align: top
+	+s(stickerapp)
+.partners__list
+	font-size: 0
+	text-align: center
+	li
+		display: inline-block
+		width: 25%
+		margin-bottom: 60px
+		vertical-align: middle
+	img
+		max-width: 100%
+
+.interview__title
+	margin-bottom: 50px
+	font-size: 50px
+.interview__card
+	float: right
+	margin-left: 50px
+.interview__in
+	overflow: hidden
+.interview__list
+	margin-bottom: 40px
+.interview__item
+	margin-top: 60px
+	&:first-child
+		margin: 0
+.interview__question
+	margin-bottom: 20px
+	font-size: 21px
+.interview__answer
+	+reg
+	font-size: 18px
+	p
+		margin-bottom: 20px
+	a
+		border-bottom: #D1D1D1 1px solid 
+		color: #3e3e3e
+	img
+		max-width: 100%
+		margin-bottom: 20px
+.interview__thanks
+	font-size: 21px
+.interview__list
+	margin-bottom: 80px
+	font-size: 0
+.interview__list-item
+	display: inline-block
+	width: 25%
+	padding-right: 30px
+	vertical-align: top
+	+box
+	font-size: 16px
+	>i
+		margin-bottom: 15px
+.interview__actors
+	span
+		display: inline-block
+		width: 22px
+		margin-right: 20px
+		text-align: center
+		color: #C2C2C2 
+	a
+		color: #3e3e3e 
+	li
+		margin-bottom: 10px
+		&.is-active
+			a
+				color: #c2c2c2 
+.interview__info
+	text-align: center
+	font-size: 16px
+	.interview__info-card
+		display: inline-block
+		margin: 0 35px
+		color: #c2c2c2 
+	a
+		color: #3e3e3e 
+
+.ico-spades
+	+svg(icon-spades, 24, 22)
+.ico-hearts
+	+svg(icon-hearts, 24, 22)
+.ico-clubs
+	+svg(icon-clubs, 24, 22)
+.ico-diamonds
+	+svg(icon-diamonds, 24, 22)
+
+.people
+	display: none
+	padding: 40px 50px
+	background: #000 
+	color: #FFF
+	text-align: center
+	.socials
+		position: relative
+.people__name
+	margin-bottom: 40px
+	font-size: 25px
+.people__photo
+	margin-bottom: 40px
+	font-size: 0
+	img
+		border-radius: 50%
+		vertical-align: top
+.people__about
+	max-width: 70%
+	margin: 0 auto 30px
+	font-size: 18px
+	p
+		margin-bottom: 20px
+		color: #9C9C9C 
+.people__links
+	margin-bottom: 35px
+	font-size: 18px
+	li
+		margin-bottom: 7px
+	a
+		border-bottom: 1px solid #676767 
+		color: #FFF 
+
+.view
+	padding: 40px 50px
+.view__card
+	position: absolute
+	top: 115px
+	left: 0
+	right: 0
+	bottom: 100px
+	+box
+	text-align: center 
+	font-size: 0
+	img
+		width: auto
+		height: 100%
+		cursor: pointer
+
+.people, .view, .slider__in
+	position: absolute
+	top: 0
+	left: 0
+	right: 0
+	bottom: 0
+
+.share
+	position: absolute
+	left: 0
+	right: 0
+	bottom: 40px
+	text-align: center
+	font-size: 0
+.share__item
+	display: inline-block
+	margin-left: 25px
+	vertical-align: middle
+	&:first-child
+		margin: 0
+
+.slider
+	display: none
+	position: fixed
+	top: 0
+	left: 0
+	right: 0
+	bottom: 0
+	background: #f5f5f5
+	z-index: 200  
+	&.is-dark	
+		.slider__prev
+			+svg(arrow-left-white,20,40)
+		.slider__next
+			+svg(arrow-right-white,20,40)
+.slider__prev, .slider__next
+	position: absolute
+	top: 50%
+	margin-top: -20px
+	opacity: .2
+	z-index: 4 
+.slider__prev
+	left: 50px
+	+svg(arrow-left,20,40)
+.slider__next
+	right: 50px
+	+svg(arrow-right,20,40)
+.slider__in
+	z-index: 2 
+
+
+
+
+
+
+
+
+
