@@ -58,6 +58,15 @@ a
 	text-decoration: none
 
 // common blocks
+.preloader
+	position: absolute
+	top: 50%
+	left: 50%
+	width: 20px
+	height: 21px
+	margin: -10px 0 0 -10px 
+	background: url(../img/loader.gif) 
+
 .wrapper
 	position: relative
 	z-index: 100 
@@ -120,7 +129,7 @@ a
 	position: fixed
 	top: 20px 
 	left: 20px 
-	z-index: 300 
+	z-index: 1000 
 	&.is-visible
 		.nav__list
 			width: 500px
@@ -346,7 +355,7 @@ a
 	bottom: 0
 	padding: 180px 90px
 	background: #f5f5f5 
-	z-index: 200
+	z-index: 300
 	overflow: auto
 	
 .title	
@@ -388,10 +397,6 @@ a
 	margin-bottom: 70px
 	text-align: center
 	font-size: 0
-.partners__stickerapp
-	display: inline-block
-	vertical-align: top
-	+s(stickerapp)
 .partners__list
 	font-size: 0
 	text-align: center
@@ -408,9 +413,12 @@ a
 	font-size: 50px
 .interview__card
 	float: right
-	margin-left: 50px
+	&.is-fixed
+		position: fixed
+		top: 50px
 .interview__in
-	overflow: hidden
+	min-height: 390px
+	margin-right: 330px
 .interview__list
 	margin-bottom: 40px
 .interview__item
@@ -482,26 +490,65 @@ a
 	display: none
 	padding: 40px 50px
 	background: #000 
+	text-align: center
+.people__in
+	display: inline-block
+	vertical-align: middle
 	color: #FFF
 	text-align: center
 	.socials
 		position: relative
+		bottom: auto
+.people__header,
+.people__footer
+	position: absolute
+	left: 0
+	right: 0
+.people__header
+	top: 40px
+.people__footer
+	bottom: 40px
 .people__name
 	margin-bottom: 40px
 	font-size: 25px
 .people__photo
-	margin-bottom: 40px
 	font-size: 0
 	img
 		border-radius: 50%
 		vertical-align: top
 .people__about
-	max-width: 70%
-	margin: 0 auto 30px
-	font-size: 18px
+	position: absolute
+	top: 355px
+	bottom: 220px 
+	right: 10%
+	left: 10% 
+	padding: 0 40px
+	font-size: 0
+	overflow: auto
+	&::-webkit-scrollbar
+		width: 10px
+	&::-webkit-scrollbar-thumb
+		background: #333
+		border-radius: 4px
+	&::-webkit-scrollbar-track-piece
+		background: none
+	&:before
+		content: ""
+		display: inline-block
+		width: 1%
+		height: 100%
+		overflow: hidden
+		vertical-align: middle
 	p
-		margin-bottom: 20px
+		margin-top: 20px
 		color: #9C9C9C 
+		&:first-child
+			margin: 0
+.people__about-in
+	display: inline-block
+	width: 99%
+	vertical-align: middle
+	font-size: 18px
 .people__links
 	margin-bottom: 35px
 	font-size: 18px
@@ -511,7 +558,7 @@ a
 		border-bottom: 1px solid #676767 
 		color: #FFF 
 
-.view
+.view__in
 	padding: 40px 50px
 .view__card
 	position: absolute
@@ -527,7 +574,7 @@ a
 		height: 100%
 		cursor: pointer
 
-.people, .view, .slider__in
+.people, .view, .slider__in, .view__in
 	position: absolute
 	top: 0
 	left: 0
