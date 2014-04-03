@@ -39,6 +39,10 @@
 // +font(book, cytiapro-black-webfont)  
 // =book
 // 	font-family: "book",arial,sans-serif 
+@mixin rt($media)
+	@if $media == 600
+		@media only screen and (max-width: 600px)
+			@content
 
 +font(GothamProReg, gothaproreg)  
 =reg
@@ -290,7 +294,7 @@ a
 		position: absolute
 		left: 50%
 		width: 580px  
-		margin-left: -290px 
+		margin-left: -297px 
 		bottom: 40%
 		font-size: 50px  
 		color: #81B928
@@ -301,6 +305,12 @@ a
 		line-height: 117px
 		text-align: center 
 		+transition(all .2s linear)
+		+rt(600)
+			width: 280px
+			height: 60px
+			line-height: 60px
+			margin-left: -147px 
+			font-size: 24px
 		&:hover
 			background: #80B927
 			color: #fff 

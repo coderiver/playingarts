@@ -84,7 +84,8 @@ a { text-decoration: none; }
 .is-bottom .go-top { right: 20px; }
 
 .footer { height: 100vh; position: relative; background: url(../img/footer.jpg) no-repeat 50% 0; background-attachment: fixed; }
-.footer .footer__buy { position: absolute; left: 50%; width: 580px; margin-left: -290px; bottom: 40%; font-size: 50px; color: #81b928; text-decoration: none; display: inline-block; border: 7px solid #80b927; height: 117px; line-height: 117px; text-align: center; -webkit-transition: all 0.2s linear; -moz-transition: all 0.2s linear; -o-transition: all 0.2s linear; transition: all 0.2s linear; }
+.footer .footer__buy { position: absolute; left: 50%; width: 580px; margin-left: -297px; bottom: 40%; font-size: 50px; color: #81b928; text-decoration: none; display: inline-block; border: 7px solid #80b927; height: 117px; line-height: 117px; text-align: center; -webkit-transition: all 0.2s linear; -moz-transition: all 0.2s linear; -o-transition: all 0.2s linear; transition: all 0.2s linear; }
+@media only screen and (max-width: 600px) { .footer .footer__buy { width: 280px; height: 60px; line-height: 60px; margin-left: -147px; font-size: 24px; } }
 .footer .footer__buy:hover { background: #80b927; color: white; }
 .footer .footer__copy { position: absolute; left: 44px; bottom: 26px; font-size: 14px; color: #c1c1c1; }
 
