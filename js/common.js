@@ -221,7 +221,7 @@ $(document).ready(function() {
 
   //preloader
   site.hide();
-  $.preloadImages('../img/1.jpg', '../img/2.jpg', '../img/3.jpg', '../img/pre', function(){
+  $.preloadImages('img/1.jpg', 'img/2.jpg', 'img/3.jpg', 'img/pre.jpg', function(){
     preloader.hide();
     site.show();
   });
