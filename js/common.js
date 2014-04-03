@@ -1,9 +1,3 @@
-$.preloadImages = function(){
-  for(var i = 0; i<arguments.length; i++){
-    $('<img />').attr('src', arguments[i]);
-  }
-}
-
 //document ready
 $(document).ready(function() {
 
@@ -220,10 +214,25 @@ $(document).ready(function() {
   });
 
   //preloader
+  function preloadImages(images, callback) {
+    var count = images.length;
+    if(count === 0) {
+      callback();
+    }
+    var loaded = 0;
+    $(images).each(function() {
+      $('<img>').attr('src', this).load(function() {
+        loaded++;
+        if (loaded === count) {
+          callback();
+        }
+      });
+    });
+  };
   site.hide();
-  $.preloadImages('img/1.jpg', 'img/2.jpg', 'img/3.jpg', 'img/pre.jpg', function(){
+  preloadImages(['img/1.jpg', 'img/2.jpg', 'img/3.jpg'], function() {
     preloader.hide();
-    site.show();
+    site.fadeIn();
   });
 
   // history
